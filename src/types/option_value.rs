@@ -1,6 +1,8 @@
 
 use crate::types::*;
 use crate::errors::*;
+use crate::codec::deserde_from_str;
+
 use uuid::Uuid;
 
 
@@ -259,6 +261,7 @@ pub struct OptionValueInteger {
   #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
   extra: Option<String>,
   /// The value of the option
+  #[serde(deserialize_with = "deserde_from_str")]
   value: isize,
   
 }

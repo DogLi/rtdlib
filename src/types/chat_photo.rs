@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use crate::codec::deserde_from_str;
 use uuid::Uuid;
 
 
@@ -16,6 +17,7 @@ pub struct ChatPhoto {
   #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
   extra: Option<String>,
   /// Unique photo identifier
+  #[serde(deserialize_with = "deserde_from_str")]
   id: isize,
   /// Point in time (Unix timestamp) when the photo has been added
   added_date: i64,

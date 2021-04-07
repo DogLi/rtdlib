@@ -1,6 +1,7 @@
 
 use crate::types::*;
 use crate::errors::*;
+use crate::codec::deserde_from_str;
 use uuid::Uuid;
 
 
@@ -1175,6 +1176,7 @@ pub struct UpdateBasicGroupFullInfo {
   #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
   extra: Option<String>,
   /// Identifier of a basic group
+  #[serde(deserialize_with = "deserde_from_str")]
   basic_group_id: i64,
   /// New full information about the group
   basic_group_full_info: BasicGroupFullInfo,
@@ -2189,6 +2191,7 @@ pub struct UpdateChatPhoto {
   #[serde(rename(serialize = "@extra", deserialize = "@extra"))]
   extra: Option<String>,
   /// Chat identifier
+  #[serde(deserialize_with = "deserde_from_str")]
   chat_id: i64,
   /// The new chat photo; may be null
   photo: Option<ChatPhotoInfo>,
